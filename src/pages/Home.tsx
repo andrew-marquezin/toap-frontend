@@ -8,7 +8,7 @@ export default function Home() {
   useEffect(() => {
     fetchEndpoint('/greeting/🍌')
       .then((response) => {
-        setData(response.data);
+        setData(response);
       }).catch((error) => {
         console.error('Error fetching data: ', error);
       });

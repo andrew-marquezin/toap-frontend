@@ -1,5 +1,6 @@
 import axios from "axios";
 
-export function fetchEndpoint(endpoint: string) {
-  return axios.get('http://localhost:8080' + endpoint)
+export async function fetchEndpoint(endpoint: string) {
+  const { data } = await axios.get(`http://localhost:8080${endpoint}`)
+  return data
 }
