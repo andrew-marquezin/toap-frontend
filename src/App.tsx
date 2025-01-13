@@ -6,9 +6,13 @@ import { Route, Routes } from 'react-router'
 import NotFound from './pages/NotFound'
 import Home from './pages/Home'
 import Layout from './components/Layout'
-import Characters from './pages/Characters'
-import Tales from './pages/Tales'
-import Scenarios from './pages/Scenarios'
+import Characters from './pages/Characters/Characters'
+import Tales from './pages/Tales/Tales'
+import Scenarios from './pages/Scenarios/Scenarios'
+import Skills from './pages/Skills/Skills'
+import AddSkillsForm from './pages/Skills/AddSkillsForm'
+import Organizations from './pages/Organizations/Organizations'
+import AddOrgsForm from './pages/Organizations/AddOrgsForm'
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -20,6 +24,12 @@ function App() {
         <Route path='/characters' element={<Characters />} />
         <Route path='/tales' element={<Tales />} />
         <Route path='/scenarios' element={<Scenarios />} />
+        <Route path='/skills' element={<Skills />} />
+        <Route path='/skills/add' element={<AddSkillsForm />} />
+        <Route path='/skills/edit/:id' element={<AddSkillsForm />} />
+        <Route path='/organizations' element={<Organizations />} />
+        <Route path='/organizations/add' element={<AddOrgsForm />} />
+        <Route path='/organizations/edit/:id' element={<AddOrgsForm />} />
         <Route path='/*' element={<NotFound />} />
       </Route>
     </Routes>

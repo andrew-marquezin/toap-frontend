@@ -1,19 +1,15 @@
 import { useEffect, useState } from "react";
-import { fetchEndpoint } from "../utils/Connection";
-import { Character } from "../utils/Types";
+import { fetchEndpoint } from "../../utils/Connection";
+import { Character } from "../../utils/Types";
 
 export default function Characters() {
-  const [characters, setCharacters] = useState<Character[] | null>(null);
+  const [characters, setCharacters] = useState<Character[]>([]);
 
   useEffect(() => {
     fetchEndpoint('/characters')
-      .then((response) => {
-        setCharacters(response);
-      }).catch((error) => {
-        console.error('Error fetching data: ', error);
-      });
+      .then((response) => setCharacters(response))
+      .catch((error) => console.error('Error fetching data: ', error));
   }, []);
-  console.log(characters);
 
   return (
     <div>
