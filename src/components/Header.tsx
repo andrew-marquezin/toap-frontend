@@ -8,6 +8,9 @@ export default function Header() {
         <NavLink to='/characters'>Personagens</NavLink>
         <NavLink to='/tales'>Contos</NavLink>
         <NavLink to='/scenarios'>Cenários</NavLink>
+        <NavLink to='/skills'>Habilidades</NavLink>
+        <NavLink to='/organizations'>Organizações</NavLink>
+        <NavLink to='/races'>Raças</NavLink>
       </nav>
     </header>
   )

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Response } from "./Types";
 
 export async function fetchEndpoint(endpoint: string) {
   const { data } = await axios.get(`http://localhost:8080${endpoint}`)
@@ -11,7 +10,8 @@ export async function postEndpoint(endpoint: string) {
   return data
 }
 
-export async function reachEndpoint<T>(endpoint: string, method: string, data: T): Promise<Response<T>> {
+export async function reachEndpoint<T>(
+  endpoint: string, method: string, data?: T) {
   const { data: response } = await axios({
     url: `http://localhost:8080${endpoint}`,
     method: method,

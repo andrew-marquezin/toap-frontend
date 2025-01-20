@@ -4,13 +4,6 @@ import { fetchEndpoint } from "../../utils/Connection";
 import { Skill } from "../../utils/Types";
 import axios from "axios";
 
-// interface SkillForm {
-//   id?: number;
-//   name: string;
-//   description: string;
-//   characters: Character[];
-// }
-
 const emptySkill = {
   id: 0,
   name: '',

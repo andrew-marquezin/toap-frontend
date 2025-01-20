@@ -1,22 +1,22 @@
 import { useEffect, useState } from "react"
 import { Skill } from "../../utils/Types"
-import { fetchEndpoint } from "../../utils/Connection"
+import { fetchEndpoint, reachEndpoint } from "../../utils/Connection"
 import { Link } from "react-router";
-import axios from "axios";
 
 export default function Skills() {
   const [skills, setSkills] = useState<Skill[]>([])
   useEffect(() => {
     fetchEndpoint('/skills')
-      .then((response) => {
-        setSkills(response)
-      }).catch((error) => {
-        console.error('Error fetching data: ', error)
-      });
+      .then((response) => setSkills(response))
+      .catch((error) => console.error('Error fetching data: ', error));
   }, []);
 
   function handleDelete(id: number) {
-    axios.delete(`http://localhost:8080/skills/${id}`)
+    if (window.confirm('Tem certeza que deseja deletar esta habilidade?')) {
+      reachEndpoint(`/skills/${id}`, 'DELETE')
+        .then(() => setSkills(skills.filter((org) => org.id !== id)))
+        .catch((error) => console.error('Error deleting data: ', error));
+    }
   }
 
   return (
@@ -32,8 +32,7 @@ export default function Skills() {
         ))
       ) : (
         <h1>Loading... 🍌</h1>
-      )
-      }
+      )}
       <Link to='/skills/add'><button>Criar nova</button></Link>
     </div >
   )

@@ -13,6 +13,9 @@ import Skills from './pages/Skills/Skills'
 import AddSkillsForm from './pages/Skills/AddSkillsForm'
 import Organizations from './pages/Organizations/Organizations'
 import AddOrgsForm from './pages/Organizations/AddOrgsForm'
+import Races from './pages/Races/Races'
+import AddRacesForm from './pages/Races/AddRacesForm'
+import AddCharacterForm from './pages/Characters/AddCharacterForm'
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -22,6 +25,8 @@ function App() {
       <Route element={<Layout />}>
         <Route path='/' element={<Home />} />
         <Route path='/characters' element={<Characters />} />
+        <Route path='/characters/add' element={<AddCharacterForm />} />
+        <Route path='/characters/edit/:id' element={<AddCharacterForm />} />
         <Route path='/tales' element={<Tales />} />
         <Route path='/scenarios' element={<Scenarios />} />
         <Route path='/skills' element={<Skills />} />
@@ -30,6 +35,9 @@ function App() {
         <Route path='/organizations' element={<Organizations />} />
         <Route path='/organizations/add' element={<AddOrgsForm />} />
         <Route path='/organizations/edit/:id' element={<AddOrgsForm />} />
+        <Route path='/races' element={<Races />} />
+        <Route path='/races/add' element={<AddRacesForm />} />
+        <Route path='/races/edit/:id' element={<AddRacesForm />} />
         <Route path='/*' element={<NotFound />} />
       </Route>
     </Routes>

@@ -21,7 +21,16 @@ export type Character = {
   organization: Organization;
   realmID: number;
   realm: Realm;
-  skills: Skill[];
+  skills: { id: number }[];
+};
+
+export type CharacterPost = {
+  id: number;
+  name: string;
+  raceID: number;
+  organizationID: number;
+  realmID: number;
+  skills: { id: number }[];
 };
 
 export type Race = {
