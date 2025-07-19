@@ -1,0 +1,16 @@
+header {
+  top: 1;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+p {
+  font-size: 1.2em;
+  color: #00ff15;
+}

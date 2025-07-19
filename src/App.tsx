@@ -2,7 +2,10 @@
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import './App.css'
+import './components/Header.css';
 import { Route, Routes } from 'react-router'
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import NotFound from './pages/NotFound'
 import Home from './pages/Home'
 import Layout from './components/Layout'
@@ -21,26 +24,29 @@ function App() {
   // const [count, setCount] = useState(0)
 
   return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route path='/' element={<Home />} />
-        <Route path='/characters' element={<Characters />} />
-        <Route path='/characters/add' element={<AddCharacterForm />} />
-        <Route path='/characters/edit/:id' element={<AddCharacterForm />} />
-        <Route path='/tales' element={<Tales />} />
-        <Route path='/scenarios' element={<Scenarios />} />
-        <Route path='/skills' element={<Skills />} />
-        <Route path='/skills/add' element={<AddSkillsForm />} />
-        <Route path='/skills/edit/:id' element={<AddSkillsForm />} />
-        <Route path='/organizations' element={<Organizations />} />
-        <Route path='/organizations/add' element={<AddOrgsForm />} />
-        <Route path='/organizations/edit/:id' element={<AddOrgsForm />} />
-        <Route path='/races' element={<Races />} />
-        <Route path='/races/add' element={<AddRacesForm />} />
-        <Route path='/races/edit/:id' element={<AddRacesForm />} />
-        <Route path='/*' element={<NotFound />} />
-      </Route>
-    </Routes>
+    <>
+      <ToastContainer position="bottom-right" autoClose={3000} />
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path='/' element={<Home />} />
+          <Route path='/characters' element={<Characters />} />
+          <Route path='/characters/add' element={<AddCharacterForm />} />
+          <Route path='/characters/edit/:id' element={<AddCharacterForm />} />
+          <Route path='/tales' element={<Tales />} />
+          <Route path='/scenarios' element={<Scenarios />} />
+          <Route path='/skills' element={<Skills />} />
+          <Route path='/skills/add' element={<AddSkillsForm />} />
+          <Route path='/skills/edit/:id' element={<AddSkillsForm />} />
+          <Route path='/organizations' element={<Organizations />} />
+          <Route path='/organizations/add' element={<AddOrgsForm />} />
+          <Route path='/organizations/edit/:id' element={<AddOrgsForm />} />
+          <Route path='/races' element={<Races />} />
+          <Route path='/races/add' element={<AddRacesForm />} />
+          <Route path='/races/edit/:id' element={<AddRacesForm />} />
+          <Route path='/*' element={<NotFound />} />
+        </Route>
+      </Routes>
+    </>
     // <>
     //   <div>
     //     <a href="https://vite.dev" target="_blank">

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { reachEndpoint } from "../../utils/Connection";
 import { Character } from "../../utils/Types";
 import { Link } from "react-router";
+import { toast } from "react-toastify";
 
 export default function Characters() {
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -15,7 +16,10 @@ export default function Characters() {
   function handleDelete(id: number) {
     if (window.confirm('Tem certeza que deseja deletar esse personagem?')) {
       reachEndpoint(`/characters/${id}`, 'DELETE')
-        .then(() => setCharacters(characters.filter((e) => e.id !== id)))
+        .then(() => {
+          setCharacters(characters.filter((e) => e.id !== id))
+          toast.success('Personagem deletado com sucesso! 🍌')
+        })
         .catch((error) => console.error('Error deleting data: ', error));
     }
   }

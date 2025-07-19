@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react"
-// import { useParams } from "react-router";
 import { reachEndpoint } from "../../utils/Connection";
 import { Character, CharacterPost, Organization, Race, Realm, Skill } from "../../utils/Types";
 import { Link, useParams } from "react-router";
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
 
 const emptyCharacter = {
   id: 0,
@@ -17,14 +19,13 @@ export default function AddCharacterForm() {
   const { id } = useParams();
   const [character, setCharacter] = useState<CharacterPost>(emptyCharacter)
   const [selectedSkills, setSelectedSkills] = useState<number[]>([])
-  // character.skills.map(({ id }) => id)
 
   const [skills, setSkills] = useState<Skill[]>([])
   const [races, setRaces] = useState<Race[]>([])
   const [realms, setRealms] = useState<Realm[]>([])
   const [organizations, setOrganizations] = useState<Organization[]>([])
-  // const [filled, setFilled] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  // const [filled, setFilled] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -37,7 +38,6 @@ export default function AddCharacterForm() {
         })
         .catch((error) => console.error('Error fetching data: ', error));
       setIsEditing(true);
-      // console.log(selectedSkills)
     }
     reachEndpoint('/races', 'GET').then((res) => setRaces(res))
     reachEndpoint('/realms', 'GET').then((res) => setRealms(res))
@@ -63,7 +63,6 @@ export default function AddCharacterForm() {
         ? prev.filter((id) => id !== skillId)
         : [...prev, skillId]
     );
-    // console.log(selectedSkills)
   };
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -73,18 +72,12 @@ export default function AddCharacterForm() {
       skills: selectedSkills.map((id) => ({ id }))
     };
 
-    console.log(character)
-
-    if (id) {
-      reachEndpoint<CharacterPost>(`/characters/${id}`, 'PUT', updatedCharacter)
-        .then((res) => console.log('Personagem atualizado:', res))
-        .catch((err) => console.error('Erro ao atualizar o personagem:', err));
-    } else {
-      reachEndpoint<CharacterPost>(`/characters`, 'POST', updatedCharacter)
-        .then((res) => console.log('Personagem criado:', res))
-        .catch((err) => console.error('Erro ao criar o personagem:', err));
-      setCharacter(emptyCharacter)
-    }
+    reachEndpoint<CharacterPost>(id ? `/characters/${id}` : `/characters`, id ? 'PUT' : 'POST', updatedCharacter)
+      .then(() => {
+        toast.success('Personagem salvo com sucesso!')
+        console.log('Personagem salvo com sucesso!')
+      })
+      .catch(() => toast.error('Erro ao salvar o personagem :('));
   }
 
   return (
